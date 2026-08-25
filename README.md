@@ -13,6 +13,9 @@ MVP educacional de uma plataforma de triagem dermatológica e conexão entre pac
 - agendamento demonstrativo;
 - confirmação, troca e cancelamento do agendamento;
 - painel administrativo do Django.
+- autenticação com perfis de paciente e profissional;
+- área pessoal com histórico de casos;
+- revisão profissional com justificativa e trilha de auditoria.
 
 ## Como funciona
 
@@ -51,15 +54,22 @@ python manage.py runserver
 
 Acesse `http://127.0.0.1:8000/`.
 
+### Contas locais de demonstração
+
+Após executar `python manage.py seed_demo`:
+
+- paciente: `demo-paciente` / `DermaPonte123!`;
+- profissional: `demo-medico` / `DermaPonte123!`.
+
+Essas credenciais existem apenas para desenvolvimento local e não devem ser usadas em produção.
+
 ## Próximas etapas
 
-- autenticação e perfis de paciente/profissional;
-- revisão clínica com trilha de auditoria;
-- agenda real e geolocalização;
+- agenda com horários reais e controle de concorrência;
+- notificações e geolocalização;
 - armazenamento seguro em cloud;
 - validação clínica e regulatória antes de qualquer modelo de IA.
 
 ## Autora
 
 Catarina Sonsine
-
