@@ -1,0 +1,10 @@
+{% extends 'base.html' %}{% block title %}Nova triagem | DermaPonte{% endblock %}{% block content %}
+<div class="page-head"><span class="eyebrow">Etapa única · cerca de 4 minutos</span><h1>Conte-nos o que você observou</h1><p>As respostas ajudam a organizar a prioridade de revisão. Não são usadas para emitir diagnóstico.</p></div>
+<form method="post" enctype="multipart/form-data" class="form-card">{% csrf_token %}
+{% if form.non_field_errors %}<div class="error">{{ form.non_field_errors }}</div>{% endif %}
+<fieldset><legend>Seus dados</legend><div class="grid">{% for field in form %}{% if forloop.counter <= 4 %}<label>{{ field.label }}{{ field }}{{ field.errors }}</label>{% endif %}{% endfor %}</div></fieldset>
+<fieldset><legend>Sobre a lesão</legend><div class="grid">{% for field in form %}{% if forloop.counter >= 5 and forloop.counter <= 6 %}<label>{{ field.label }}{{ field }}{{ field.errors }}</label>{% endif %}{% endfor %}</div><p class="hint">Marque os sinais que você percebeu:</p><div class="checks">{% for field in form %}{% if forloop.counter >= 7 and forloop.counter <= 12 %}<label>{{ field }}<span>{{ field.label }}</span>{{ field.errors }}</label>{% endif %}{% endfor %}</div></fieldset>
+<fieldset><legend>Imagem e contexto</legend><label>{{ form.image.label }}{{ form.image }}{{ form.image.errors }}<small>Use luz natural, mantenha a câmera em foco e não aplique filtros. Máximo: 8 MB.</small></label><label>{{ form.notes.label }}{{ form.notes }}{{ form.notes.errors }}</label></fieldset>
+<label class="consent">{{ form.consent }}<span>Autorizo o uso destes dados para a triagem demonstrativa e entendo que o resultado não é um diagnóstico.</span>{{ form.consent.errors }}</label>
+<button class="button" type="submit">Calcular prioridade de revisão</button></form>
+{% endblock %}
