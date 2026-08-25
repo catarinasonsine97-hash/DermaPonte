@@ -1,0 +1,4 @@
+{% extends 'base.html' %}{% block title %}Meus casos | DermaPonte{% endblock %}{% block content %}
+<div class="page-head row"><div><span class="eyebrow">Área do paciente</span><h1>Olá, {{ user.first_name|default:user.username }}</h1><p>Acompanhe suas triagens e agendamentos em um só lugar.</p></div><a class="button" href="{% url 'submit_case' %}">Nova triagem</a></div>
+<div class="case-cards">{% for case in cases %}<a href="{% url 'case_result' case.code %}"><div><span class="eyebrow">Caso {{ case.code }}</span><h3>{{ case.lesion_location }}</h3><p>{{ case.created_at|date:'d/m/Y · H:i' }}</p></div><div><i class="tag {{ case.priority }}">{{ case.get_priority_display }}</i><strong>{{ case.get_status_display }}</strong></div></a>{% empty %}<div class="empty-card"><h2>Nenhuma triagem enviada</h2><p>Comece registrando uma imagem e os sinais observados.</p><a class="button" href="{% url 'submit_case' %}">Iniciar triagem</a></div>{% endfor %}</div>
+{% endblock %}
