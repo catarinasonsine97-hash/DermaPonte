@@ -1,10 +1,19 @@
 import uuid
+from django.contrib.auth.models import User
 from django.db import models
+
+class UserProfile(models.Model):
+    ROLES = [("patient", "Paciente"), ("doctor", "Profissional de saúde")]
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
+    role = models.CharField(max_length=10, choices=ROLES, default="patient")
+    city = models.CharField(max_length=80, blank=True)
+    state = models.CharField(max_length=2, default="SP")
 
 class Case(models.Model):
     PRIORITIES = [("urgent", "Revisão prioritária"), ("soon", "Revisão breve"), ("routine", "Revisão de rotina")]
     STATUS = [("waiting", "Aguardando revisão"), ("reviewed", "Revisado"), ("scheduled", "Consulta agendada")]
     code = models.CharField(max_length=10, unique=True, editable=False)
+    patient = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, related_name="cases")
     patient_name = models.CharField("Nome", max_length=120)
     email = models.EmailField("E-mail")
     city = models.CharField("Cidade", max_length=80)
@@ -32,6 +41,7 @@ class Case(models.Model):
         super().save(*args, **kwargs)
 
 class Doctor(models.Model):
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.SET_NULL, related_name="doctor_profile")
     name = models.CharField(max_length=120)
     crm = models.CharField(max_length=30)
     city = models.CharField(max_length=80)
@@ -45,3 +55,21 @@ class Appointment(models.Model):
     doctor = models.ForeignKey(Doctor, on_delete=models.PROTECT)
     scheduled_for = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
+
+class ClinicalReview(models.Model):
+    case = models.ForeignKey(Case, on_delete=models.CASCADE, related_name="reviews")
+    reviewer = models.ForeignKey(User, on_delete=models.PROTECT, related_name="clinical_reviews")
+    automated_priority = models.CharField(max_length=10, choices=Case.PRIORITIES)
+    final_priority = models.CharField(max_length=10, choices=Case.PRIORITIES)
+    notes = models.TextField("Justificativa profissional")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+class AuditEvent(models.Model):
+    case = models.ForeignKey(Case, on_delete=models.CASCADE, related_name="audit_events")
+    actor = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    action = models.CharField(max_length=50)
+    details = models.JSONField(default=dict)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]

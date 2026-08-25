@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Appointment, Case, Doctor
+from .models import Appointment, AuditEvent, Case, ClinicalReview, Doctor, UserProfile
 
 @admin.register(Case)
 class CaseAdmin(admin.ModelAdmin):
@@ -9,3 +9,6 @@ class CaseAdmin(admin.ModelAdmin):
 
 admin.site.register(Doctor)
 admin.site.register(Appointment)
+admin.site.register(UserProfile)
+admin.site.register(ClinicalReview)
+admin.site.register(AuditEvent)
