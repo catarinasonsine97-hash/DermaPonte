@@ -1,0 +1,5 @@
+{% load static %}<!doctype html>
+<html lang="pt-br"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}DermaPonte{% endblock %}</title><link rel="stylesheet" href="{% static 'css/app.css' %}"></head>
+<body><header><a class="brand" href="{% url 'home' %}"><span>◌</span> DermaPonte</a><nav><a href="{% url 'submit_case' %}">Nova triagem</a><a href="{% url 'clinical_queue' %}">Painel clínico</a></nav></header>
+<main>{% if messages %}<div class="messages">{% for message in messages %}<div class="message {{ message.tags }}">{{ message }}</div>{% endfor %}</div>{% endif %}{% block content %}{% endblock %}</main><footer>Protótipo educacional — triagem não substitui avaliação médica.</footer></body></html>
