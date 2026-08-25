@@ -1,0 +1,3 @@
+{% extends 'base.html' %}{% block title %}Criar conta | DermaPonte{% endblock %}{% block content %}
+<div class="page-head"><span class="eyebrow">Perfil de paciente</span><h1>Crie sua conta</h1><p>Seus casos ficarão vinculados ao seu acesso pessoal.</p></div><form method="post" class="form-card auth-wide">{% csrf_token %}<div class="grid">{% for field in form %}<label>{{ field.label }}{{ field }}{% if field.help_text %}<small>{{ field.help_text|safe }}</small>{% endif %}{{ field.errors }}</label>{% endfor %}</div><button class="button" type="submit">Criar conta</button></form>
+{% endblock %}
