@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DermaPonte | Nova triagem</title><link rel="stylesheet" href="/css/app.css"><link rel="stylesheet" href="/css/workspace.css"><script src="/js/triage.js" defer></script></head>
+<body>
+<header><a class="brand" href="/"><span>◌</span> DermaPonte</a><nav><span class="session-badge" id="connection" role="status">Conectando à API…</span><button class="button secondary" id="logout" type="button">Sair</button></nav></header>
+<main>
+<section class="hero"><div><span class="eyebrow">DermaPonte · demonstração local</span><h1>Uma ponte para o cuidado com a sua pele.</h1><p>Conte o que você observou e veja como o protótipo organiza a prioridade de revisão.</p><a class="button" href="#questionario">Iniciar questionário</a></div><aside class="safety"><b>Informação importante</b><p>Este protótipo não realiza diagnóstico nem analisa fotos com inteligência artificial. As regras são demonstrativas e não foram validadas clinicamente. Não use o resultado para decidir se deve procurar atendimento.</p></aside></section>
+<section class="steps" aria-label="Como testar"><article><b>01 · Observe</b><h3>Responda ao questionário</h3><p>Selecione os sinais do seu exemplo fictício.</p></article><article><b>02 · Entenda</b><h3>Veja os motivos</h3><p>A API Java retorna a prioridade e explica a pontuação.</p></article><article><b>03 · Explore</b><h3>Compare cenários</h3><p>Altere as respostas e faça um novo cálculo, sem salvar dados.</p></article></section>
+<div class="triage-workspace"><section id="questionario"><div class="page-head"><span class="eyebrow">Questionário demonstrativo</span><h2>Conte-nos o que você observou</h2><p>Use apenas situações fictícias. Nenhum caso ou imagem será salvo nesta etapa.</p></div>
+<form id="triage" class="form-card">
+<fieldset><legend>Sobre a lesão</legend><p class="hint">Marque os sinais relatados no exemplo. Deixe os demais desmarcados.</p><div class="checks">
+<label><input type="checkbox" name="changed"><span>Mudança de tamanho, forma ou cor</span></label>
+<label><input type="checkbox" name="bleeding"><span>Sangramento</span></label>
+<label><input type="checkbox" name="itchingOrPain"><span>Coceira ou dor</span></label>
+<label><input type="checkbox" name="notHealing"><span>Ferida que não cicatriza</span></label>
+<label><input type="checkbox" name="personalHistory"><span>Histórico pessoal de câncer de pele</span></label>
+<label><input type="checkbox" name="familyHistory"><span>Histórico familiar de câncer de pele</span></label>
+</div></fieldset>
+<label class="consent"><input type="checkbox" id="consent" required><span>Entendo que esta é uma demonstração sem diagnóstico ou validação clínica.</span></label>
+<button class="button" id="submit" type="submit">Calcular prioridade de revisão</button>
+<p id="feedback" role="status" aria-live="polite"></p><button class="text-button" id="reset" type="button">Limpar respostas e começar de novo</button>
+</form></section>
+<aside class="results-column"><section id="placeholder" class="result-card"><span class="eyebrow">Seu resultado aparece aqui</span><div class="result-symbol" aria-hidden="true">◌</div><h2>Transparência em cada resposta.</h2><p>Preencha o questionário ao lado para visualizar uma prioridade demonstrativa e os sinais que contribuíram para ela.</p><p class="hint">Sem análise de imagem. Sem diagnóstico.</p></section><section id="result" class="result-card" hidden tabindex="-1" aria-labelledby="result-title"><span class="eyebrow">Resultado da API Java</span><h2 id="result-title"></h2><p id="score"></p><h3>O que contribuiu para o resultado</h3><ul id="reasons"></ul><p id="disclaimer" class="safety"></p></section><section class="roadmap-card"><span class="eyebrow">Escopo desta versão</span><h3>O que já está conectado</h3><p>✓ Login local e saída segura<br>✓ Questionário com seis sinais<br>✓ Prioridade, pontuação e motivos</p><h3>Ainda em desenvolvimento</h3><p>Envio de fotos, cadastro de pacientes, revisão médica e agendamento.</p></section></aside></div>
+</main><footer>Protótipo educacional — não substitui avaliação médica.</footer>
+</body></html>

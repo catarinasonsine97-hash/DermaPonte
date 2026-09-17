@@ -1,0 +1,27 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "DermaPonte — Debug local",
+      "request": "launch",
+      "mainClass": "br.com.dermaponte.DermaPonteApplication",
+      "projectName": "dermaponte-backend",
+      "cwd": "${workspaceFolder}",
+      "javaExec": "${workspaceFolder}/.tools/jdk/jdk-21.0.12.1+1/bin/java.exe",
+      "console": "integratedTerminal",
+      "env": {
+        "DERMAPONTE_USER": "developer",
+        "DERMAPONTE_PASSWORD": "${input:localPassword}"
+      }
+    }
+  ],
+  "inputs": [
+    {
+      "id": "localPassword",
+      "type": "promptString",
+      "description": "Senha para o usuário developer nesta sessão local",
+      "password": true
+    }
+  ]
+}

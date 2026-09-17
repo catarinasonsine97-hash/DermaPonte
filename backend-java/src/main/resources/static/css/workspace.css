@@ -1,0 +1,17 @@
+html{scroll-behavior:smooth} [hidden]{display:none!important}
+.session-badge{font-size:12px;color:var(--teal);background:var(--mint);border-radius:30px;padding:9px 13px}
+.triage-workspace{display:grid;grid-template-columns:1.35fr 1fr;gap:32px;margin-top:65px;align-items:start}
+.page-head h2{font:38px Georgia,serif;color:var(--ink);letter-spacing:-.025em;margin:14px 0}
+.page-head p{font-size:16px}.results-column{display:grid;gap:20px;position:sticky;top:24px}
+.result-symbol{font-size:85px;color:var(--coral);margin-top:12px;line-height:1}
+.results-column .result-card h2{font-size:31px;line-height:1.15}
+.result-card p,.roadmap-card p{line-height:1.7}.result-card h3,.roadmap-card h3{color:var(--ink);font-size:16px}
+.roadmap-card{border:1px solid var(--line);background:var(--cream);border-radius:16px;padding:25px}
+.checks{grid-template-columns:1fr}.checks label{padding:17px;cursor:pointer;transition:background .15s,border-color .15s}
+.checks label:has(input:checked){background:var(--mint);border-color:var(--teal)}
+input[type=checkbox]{accent-color:var(--teal);width:18px;height:18px;flex-shrink:0}
+.button:disabled{opacity:.55;cursor:wait}button:focus-visible,a:focus-visible{outline:3px solid var(--coral);outline-offset:4px}
+#feedback{min-height:24px;font-size:14px;line-height:1.6}#result:focus{outline:3px solid var(--mint);outline-offset:4px}
+.hero{padding-bottom:45px}.hero h1{font-size:clamp(42px,5vw,64px)}
+@media(max-width:850px){.triage-workspace{grid-template-columns:1fr;margin-top:40px}.results-column{position:static}header nav{gap:10px}.session-badge{max-width:180px}.page-head h2{font-size:32px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.checks label{transition:none}}
